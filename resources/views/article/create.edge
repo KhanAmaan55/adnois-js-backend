@@ -1,0 +1,25 @@
+@layout('layout/main')
+@section('body')
+<div class="container">
+
+    <h1>Create news</h1>
+    <form action={{route('news_store')}} method="POST">
+        {{--  {{ csrfField() }}  --}}
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input type="text" class = "form-control"name ="title" placeholder="Article Title">
+            @if(flashMessages.has('errors.title'))
+            <p> {{ flashMessages.get('errors.title') }} </p>
+            @end
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Content</label>
+        <textarea type="text" class = "form-control" name="content" id="" cols="30" rows="10" placeholder="Article Content"></textarea>
+        @if(flashMessages.has('errors.content'))
+        <p> {{ flashMessages.get('errors.content') }} </p>
+        @end
+        </div>
+        <button class="btn btn-primary"type="submit">Create News</button>
+    </form>  
+</div>
+@end

@@ -1,0 +1,43 @@
+@layout('layout/main')
+@section('body')
+  <div class="container mt-4">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">
+              <h3>
+                Title
+                <a href="{{route('news_sort', ["title"])}}" class="btn btn-primary btn-sm">&darr;</a>
+              </h3>
+          </th>
+          <th scope="col">
+            <h3>
+              Content
+              <a href="{{route('news_sort', ["content"])}}" class="btn btn-primary btn-sm">&darr;</a>
+            </h3>
+          </th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @each(article in articles)
+          <tr>
+            <td>{{article.title}}</td>
+            <td>{{article.content}}</td>
+            <td>
+              <a href="{{route('news_edit', [article.slug])}}" class="btn btn-primary">Edit</a>
+
+            </td>
+            <td>
+              <form action="{{route('news_delete', [article.slug])}}?_method=DELETE", method="POST">
+                <button class="btn btn-danger">Delete</button>
+              </form>
+
+            </td>
+          </tr>
+      @end
+      </tbody>
+    </table>
+  </div>
+@end
